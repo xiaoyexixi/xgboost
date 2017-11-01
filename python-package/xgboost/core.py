@@ -874,7 +874,7 @@ class Booster(object):
         for key, val in params:
             _check_call(_LIB.XGBoosterSetParam(self.handle, c_str(key), c_str(str(val))))
 
-    def update(self, dtrain, iteration, fobj=None):
+    def update(self, dtrain, iteration, fobj=None):                                 ##这个才是训练的核心
         """
         Update for one iteration, with objective function calculated internally.
 
@@ -899,7 +899,7 @@ class Booster(object):
             grad, hess = fobj(pred, dtrain)
             self.boost(dtrain, grad, hess)
 
-    def boost(self, dtrain, grad, hess):
+    def boost(self, dtrain, grad, hess):                                          
         """
         Boost the booster for one iteration, with customized gradient statistics.
 
@@ -989,8 +989,8 @@ class Booster(object):
         self._validate_features(data)
         return self.eval_set([(data, name)], iteration)
 
-    def predict(self, data, output_margin=False, ntree_limit=0, pred_leaf=False,
-                pred_contribs=False, approx_contribs=False):
+    def predict(self, data, output_margin=False, ntree_limit=0, pred_leaf=False,                    
+                pred_contribs=False, approx_contribs=False):                         #这个没看懂
         """
         Predict with data.
 
